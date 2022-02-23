@@ -5,22 +5,15 @@ function DoubleArray() {
     const [input, setInput] = useState("");
     const [newArray, setNewArray] = useState([]);
     const [output, setOutput] = useState([]);
-    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        setNewArray([]);
+        console.log("-----1-----");
         let value = input;
-        console.log("value: " + value);
         resetForm();
         splitStringToArray(value);
-        console.log("newArray: " + newArray);
-        if (success) {
-          doubleArray();
-        }
     }, [input]);
 
     useEffect(() => {
-        console.log("-----2-----");
         doubleArray();
     }, [newArray]);
 
@@ -38,15 +31,12 @@ function DoubleArray() {
         if (isValid) {
             if (!value.includes(",")) {
                 setNewArray(new Array(value));
-                setSuccess(true);
                 return;
             }
             let splitArray = value.split(",").map((element) => parseInt(element, 10));
-            setNewArray(splitArray);;
-            setSuccess(true);
+            setNewArray(splitArray);
         } else {
             setNewArray([]);
-            setSuccess(false);
         }
     };
 
