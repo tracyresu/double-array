@@ -11,13 +11,19 @@ function DoubleArray() {
     };
 
     const printDoubleOfArray = (value) => {
+        console.log("newArray: " + value);
         splitStringToArray(value);
+        console.log("newArray: " + value);
     };
 
     const splitStringToArray = (value) => {
         let isValid = validateString(value);
-        if(isValid) {
-            let splitArray = value.split(",");
+        if (isValid) {
+            if (!value.includes(",")) {
+                setNewArray(new Array(value));
+                return;
+            }
+            let splitArray = value.split(",").map((element) => parseInt(element, 10));
             setNewArray(splitArray);
         } else {
             setNewArray([]);
@@ -27,15 +33,9 @@ function DoubleArray() {
     const validateString = (value) => {
         if (/^[0-9,.]*$/.test(value)) {
             let charArray = value.split("");
-            if (
-                charArray.length &&
+            return charArray.length &&
                 charArray[charArray.length - 1] !== "," &&
-                charArray[charArray.length - 1] !== "."
-            ) {
-                return true;
-            } else {
-                return false;
-            }
+                charArray[charArray.length - 1] !== ".";
         } else {
             return false;
         }
