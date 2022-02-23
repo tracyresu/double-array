@@ -1,5 +1,5 @@
 import './DoubleArray.css';
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 function DoubleArray() {
     const [input, setInput] = useState("");
@@ -7,7 +7,7 @@ function DoubleArray() {
 
     const handleInput = (e) => {
         setInput(e.target.value);
-        console.log(input)
+        printDoubleOfArray(input)
     };
 
     const printDoubleOfArray = (value) => {
@@ -19,11 +19,26 @@ function DoubleArray() {
         if(isValid) {
             let splitArray = value.split(",");
             setNewArray(splitArray);
+        } else {
+            setNewArray([]);
         }
     };
 
     const validateString = (value) => {
-        return /^[0-9,]*$/.test(value);
+        if (/^[0-9,.]*$/.test(value)) {
+            let charArray = value.split("");
+            if (
+                charArray.length &&
+                charArray[charArray.length - 1] !== "," &&
+                charArray[charArray.length - 1] !== "."
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     };
 
     return (
