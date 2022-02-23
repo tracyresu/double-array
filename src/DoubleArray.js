@@ -10,20 +10,27 @@ function DoubleArray() {
     useEffect(() => {
         setNewArray([]);
         let value = input;
+        console.log("value: " + value);
+        resetForm();
         splitStringToArray(value);
+        console.log("newArray: " + newArray);
         if (success) {
           doubleArray();
         }
     }, [input]);
 
+    useEffect(() => {
+        console.log("-----2-----");
+        doubleArray();
+    }, [newArray]);
+
     const handleInput = (e) => {
         setInput(e.target.value);
     };
 
-    const printDoubleOfArray = (value) => {
-        console.log("newArray: " + value);
-        splitStringToArray(value);
-        console.log("newArray: " + value);
+    const resetForm = () => {
+        setOutput([]);
+        setNewArray([]);
     };
 
     const splitStringToArray = (value) => {
@@ -71,7 +78,7 @@ function DoubleArray() {
                     className="input-element"
                     data-testid="input-test"
                     type="text"
-                    onKeyUp={(e) => handleInput(e)}
+                    onChange={(e) => handleInput(e)}
                 />
             </div>
             <div className="container">
