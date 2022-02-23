@@ -1,15 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@400;700&display=swap");
+
 .App {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    grid-gap: 100px;
+    grid-gap: 45px;
     border: 2px solid;
 }
 
 .container {
     height: 250px;
     min-width: 400px;
-    border: 1px solid;
+    border: 0.5px solid;
+    padding: 50px;
+}
+
+.container-label {
+    font-size: larger;
+    font-weight: bold;
+    font-family: "Montserrat";
+    padding-bottom: 40px;
+}
+
+.data-label {
+    font-size: small;
+    font-family: "Montserrat";
+    padding-bottom: 20px;
+}
+
+.input-element {
+    width: 100%;
+}
+
+.invalid-msg {
+    color: red;
+    font-family: "Montserrat";
+    padding-top: 20px;
 }
