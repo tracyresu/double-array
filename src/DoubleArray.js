@@ -5,11 +5,15 @@ function DoubleArray() {
     const [input, setInput] = useState("");
     const [newArray, setNewArray] = useState([]);
     const [output, setOutput] = useState([]);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         setNewArray([]);
         let value = input;
         splitStringToArray(value);
+        if (success) {
+          doubleArray();
+        }
     }, [input]);
 
     const handleInput = (e) => {
@@ -27,12 +31,15 @@ function DoubleArray() {
         if (isValid) {
             if (!value.includes(",")) {
                 setNewArray(new Array(value));
+                setSuccess(true);
                 return;
             }
             let splitArray = value.split(",").map((element) => parseInt(element, 10));
-            setNewArray(splitArray);
+            setNewArray(splitArray);;
+            setSuccess(true);
         } else {
             setNewArray([]);
+            setSuccess(false);
         }
     };
 
@@ -45,6 +52,14 @@ function DoubleArray() {
         } else {
             return false;
         }
+    };
+
+    const doubleArray = () => {
+        let newArrayDouble = [];
+        for (let i = 0; i < newArray.length; i++) {
+            newArrayDouble[i] = newArray[i] * 2;
+        }
+        setOutput(newArrayDouble);
     };
 
     return (
@@ -66,7 +81,7 @@ function DoubleArray() {
                     className="input-element"
                     data-testid="output-test"
                     type="text"
-                    placeholder={newArray}
+                    placeholder={output}
                 />
             </div>
         </div>
