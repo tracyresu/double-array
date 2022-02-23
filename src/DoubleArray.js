@@ -3,10 +3,27 @@ import React, { useState } from "react";
 
 function DoubleArray() {
     const [input, setInput] = useState("");
+    const [newArray, setNewArray] = useState([]);
 
     const handleInput = (e) => {
         setInput(e.target.value);
         console.log(input)
+    };
+
+    const printDoubleOfArray = (value) => {
+        splitStringToArray(value);
+    };
+
+    const splitStringToArray = (value) => {
+        let isValid = validateString(value);
+        if(isValid) {
+            let splitArray = value.split(",");
+            setNewArray(splitArray);
+        }
+    };
+
+    const validateString = (value) => {
+        return /^[0-9,]*$/.test(value);
     };
 
     return (
