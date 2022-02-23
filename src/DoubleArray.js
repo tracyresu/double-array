@@ -1,13 +1,19 @@
 import './DoubleArray.css';
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 function DoubleArray() {
     const [input, setInput] = useState("");
     const [newArray, setNewArray] = useState([]);
+    const [output, setOutput] = useState([]);
+
+    useEffect(() => {
+        setNewArray([]);
+        let value = input;
+        splitStringToArray(value);
+    }, [input]);
 
     const handleInput = (e) => {
         setInput(e.target.value);
-        printDoubleOfArray(input)
     };
 
     const printDoubleOfArray = (value) => {
@@ -50,17 +56,18 @@ function DoubleArray() {
                     className="input-element"
                     data-testid="input-test"
                     type="text"
-                    onChange={(e) => handleInput(e)}
+                    onKeyUp={(e) => handleInput(e)}
                 />
             </div>
             <div className="container">
                 <div className="container-label">Output</div>
                 <div className="data-label">Double</div>
                 <input
-                className="input-element"
-                data-testid="output-test"
-                type="text"
-            />
+                    className="input-element"
+                    data-testid="output-test"
+                    type="text"
+                    placeholder={newArray}
+                />
             </div>
         </div>
     );
