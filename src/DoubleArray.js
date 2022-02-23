@@ -8,7 +8,6 @@ function DoubleArray() {
     const [invalid, setInvalid] = useState(false);
 
     useEffect(() => {
-        console.log("-----1-----");
         let value = input;
         resetForm();
         splitStringToArray(value);
@@ -33,12 +32,10 @@ function DoubleArray() {
         if (isValid) {
             if (!value.includes(",")) {
                 setNewArray(new Array(value));
-                setInvalid(false);
                 return;
             }
             let splitArray = value.split(",").map((element) => parseFloat(element));
             setNewArray(splitArray);
-            setInvalid(false);
         } else {
             setInvalid(true);
             setNewArray([]);
