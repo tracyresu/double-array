@@ -5,7 +5,6 @@ function DoubleArray() {
     const [input, setInput] = useState("");
     const [newArray, setNewArray] = useState([]);
     const [output, setOutput] = useState([]);
-    const [invalid, setInvalid] = useState(false);
 
     useEffect(() => {
         let value = input;
@@ -24,7 +23,6 @@ function DoubleArray() {
     const resetForm = () => {
         setOutput([]);
         setNewArray([]);
-        setInvalid(false);
     };
 
     const splitStringToArray = (value) => {
@@ -37,7 +35,6 @@ function DoubleArray() {
             let splitArray = value.split(",").map((element) => parseFloat(element));
             setNewArray(splitArray);
         } else {
-            setInvalid(true);
             setNewArray([]);
         }
     };
@@ -45,9 +42,15 @@ function DoubleArray() {
     const validateString = (value) => {
         if (/^[0-9,.]*$/.test(value)) {
             let charArray = value.split("");
-            return charArray.length &&
+            if (
+                charArray.length &&
                 charArray[charArray.length - 1] !== "," &&
-                charArray[charArray.length - 1] !== ".";
+                charArray[charArray.length - 1] !== "."
+            ) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -72,11 +75,6 @@ function DoubleArray() {
                     type="text"
                     onChange={(e) => handleInput(e)}
                 />
-                {invalid && (
-                    <div data-testid="invalid-msg-test" className="invalid-msg">
-                        Please enter valid input!
-                    </div>
-                )}
             </div>
             <div className="container">
                 <div className="container-label">Output</div>
