@@ -83,7 +83,7 @@ function DoubleArray() {
                     className="input-element"
                     data-testid="output-test"
                     type="text"
-                    placeholder={output}
+                    value={output}
                 />
             </div>
         </div>
